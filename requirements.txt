@@ -1,3 +1,4 @@
+# filepath: c:\Users\lenovo\Documents\Freelancing\SuperSet_v1\requirements.txt
 streamlit
-selenium
-webdriver_manager
+selenium>=4.10.0
+webdriver_manager>=3.8.6
