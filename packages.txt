@@ -1,7 +1,11 @@
 # filepath: c:\Users\lenovo\Documents\Freelancing\SuperSet_v1\packages.txt
 # System dependencies for Selenium and Chrome WebDriver
-chromium
+chromium-browser
 chromium-driver
+google-chrome-stable
+unzip
 wget
 curl
-unzip
+xvfb
+libgconf-2-4
+gnupg

@@ -1,7 +1,16 @@
+# filepath: c:\Users\lenovo\Documents\Freelancing\SuperSet_v1\.streamlit\config.toml
 [server]
 headless = true
 port = 8501
 enableCORS = false
+enableXsrfProtection = false  # For compatibility with some APIs
 
 [browser]
 gatherUsageStats = false
+serverAddress = "localhost"
+
+[runner]
+fastReruns = true  # For better development experience
+
+[theme]
+base = "light"  # Light theme for better readability
