@@ -1,3 +1,4 @@
+chromium-browser
 wget
 curl
 unzip
