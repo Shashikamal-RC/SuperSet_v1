@@ -3,8 +3,7 @@ curl
 unzip
 libnss3
 libxss1
-libappindicator1
-libindicator7
+libappindicator3-1
 fonts-liberation
 libasound2
 xvfb
