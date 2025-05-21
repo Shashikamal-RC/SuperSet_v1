@@ -46,9 +46,9 @@ def setup_driver_v1() -> WebDriver:
         raise
 
 def setup_driver_v2() -> WebDriver:
-    """Set up the WebDriver with multiple fallback approaches."""
+    """Set up the WebDriver with multiple fallback approaches and Streamlit logging."""
     try:
-        logger.info("Setting up WebDriver with fallback approaches...")
+        st.info("Setting up WebDriver with fallback approaches...")
         options = webdriver.ChromeOptions()
         
         options.add_argument("--headless")
@@ -59,35 +59,35 @@ def setup_driver_v2() -> WebDriver:
         # Try multiple approaches to initialize the driver
         try:
             # Approach 1: Use ChromeDriverManager (default)
-            logger.info("Trying ChromeDriverManager with default settings...")
+            st.info("Trying ChromeDriverManager with default settings...")
             driver = webdriver.Chrome(
                 service=ChromeService(ChromeDriverManager().install()),
                 options=options
             )
-            logger.info("ChromeDriverManager with default settings succeeded")
+            st.success("ChromeDriverManager with default settings succeeded")
             return driver
         except WebDriverException as e1:
-            logger.warning(f"First approach failed: {e1}")
+            st.warning(f"First approach failed: {e1}")
             try:
                 # Approach 2: Try with system ChromeDriver
-                logger.info("Trying with system ChromeDriver...")
+                st.info("Trying with system ChromeDriver...")
                 driver = webdriver.Chrome(options=options)
-                logger.info("System ChromeDriver succeeded")
+                st.success("System ChromeDriver succeeded")
                 return driver
             except WebDriverException as e2:
-                logger.warning(f"Second approach failed: {e2}")
+                st.warning(f"Second approach failed: {e2}")
                 # Approach 3: Try with Chromium
-                logger.info("Trying with Chromium driver...")
+                st.info("Trying with Chromium driver...")
                 driver = webdriver.Chrome(
                     service=ChromeService(
                         ChromeDriverManager(chrome_type="chromium").install()
                     ),
                     options=options
                 )
-                logger.info("Chromium driver approach succeeded")
+                st.success("Chromium driver approach succeeded")
                 return driver
     except Exception as e:
-        logger.error(f"All WebDriver setup approaches failed: {e}")
+        st.error(f"All WebDriver setup approaches failed: {e}")
         raise
 
 def setup_driver_v3() -> WebDriver:
@@ -115,21 +115,12 @@ try:
     # Try all setup methods in sequence
     driver = None
     try:
-        st.info("Attempting setup method 1 (WebDriverManager)...")
-        driver = setup_driver_v1()
+        st.info("Attempting setup method 2 (WebDriverManager)...")
+        driver = setup_driver_v2()
     except Exception as e1:
-        st.warning(f"Method 1 failed: {str(e1)[:200]}...")
-        try:
-            st.info("Attempting setup method 2 (multiple fallbacks)...")
-            driver = setup_driver_v2()
-        except Exception as e2:
-            st.warning(f"Method 2 failed: {str(e2)[:200]}...")
-            try:
-                st.info("Attempting setup method 3 (basic approach)...")
-                driver = setup_driver_v3()
-            except Exception as e3:
-                st.error(f"All methods failed. Last error: {str(e3)[:200]}...")
-                raise Exception("Could not initialize Chrome driver with any method")
+        st.error(f"All methods failed. Last error: {str(e1)[:200]}...")
+        raise Exception("Could not initialize Chrome driver with any method")
+                
     
     # Display browser version info for debugging
     st.info("Chrome initialized successfully. Testing connection...")
