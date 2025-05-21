@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Install Google Chrome
+# Install Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt update
 apt install -y ./google-chrome-stable_current_amd64.deb
 
-# Install ChromeDriver
+# Install matching ChromeDriver
 CHROME_VERSION=$(google-chrome --version | awk '{ print $3 }' | cut -d '.' -f 1)
-CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
 wget -N https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
 chmod +x chromedriver

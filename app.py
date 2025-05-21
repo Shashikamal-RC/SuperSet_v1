@@ -1,8 +1,7 @@
 import streamlit as st
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 import time
 
 def get_driver():
@@ -15,7 +14,9 @@ def get_driver():
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--window-size=1920x1080")
 
+    # Explicit path to ChromeDriver
     service = Service("/usr/local/bin/chromedriver")
+
     driver = webdriver.Chrome(service=service, options=chrome_options)
     return driver
 
