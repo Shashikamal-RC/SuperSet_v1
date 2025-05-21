@@ -1,5 +1,3 @@
-# filepath: c:\Users\lenovo\Documents\Freelancing\SuperSet_v1\packages.txt
-# System dependencies for Selenium and Chrome WebDriver
 chromium
 chromium-driver
 unzip
